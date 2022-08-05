@@ -1,8 +1,12 @@
 package collection;
 
-public class Member {
+import java.util.Comparator;
+
+public class Member implements Comparable<Member>, Comparator<Member> {
     private int memberID;
     private String memberName;
+
+    public Member() {}
 
     public Member(int memberID, String memberName) {
         this.memberID = memberID;
@@ -36,6 +40,11 @@ public class Member {
     }
 
     @Override
+    public int compare(Member member1, Member member2) {
+        return (member1.memberID - member2.memberID) * -1 ;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Member) {
             Member member = (Member)obj;
@@ -46,5 +55,10 @@ public class Member {
             else return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Member member) {
+        return this.memberName.compareTo(member.memberName);
     }
 }
